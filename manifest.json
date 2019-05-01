@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+  "name": "sample",
+  "description": "A extension to translate the selected text",
+  "version": "1.0",
+  "browser_action": {
+    "default_title": "translation extension",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "48": "./icons/icon.png"
+    }
+  },
+  "background": {
+    "page": "src/background/background.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content-scripts/content_script.js",
+        "src/content-scripts/webcomponents-sd-ce.js"
+      ],
+      "css": [
+        "styles/style.css"
+      ]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "web_accessible_resources": [
+    "src/scripts/*.js",
+    "src/config/*.js",
+    "src/popup/helpers/*.js",
+    "src/components/*.js"
+  ]
+}
