@@ -26,7 +26,6 @@ export function main() {
         if (active) {
           positionElement(tooltipDiv);
           tooltipDiv.style.display = 'block';
-
           tooltip.setAttribute('loading', '');
 
           chrome.runtime.sendMessage({ type: TYPES.TRANSLATE, text }, ({ text, from, to }) => {
