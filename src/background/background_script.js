@@ -1,5 +1,5 @@
 import { TYPES } from '../config/constants.js';
-import { translateText } from '../scripts/calls.js';
+import { translateText } from './calls/translateText.js';
 import { getDefaultLanguage } from './helpers/defaultLanguage.js';
 
 chrome.runtime.onInstalled.addListener(({ reason }) => {

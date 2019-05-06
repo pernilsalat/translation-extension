@@ -2,7 +2,14 @@ const template = document.createElement('template');
 template.innerHTML = `
   <style>
     hr {
-        border-color: #a5a5a5;
+      border-color: #a5a5a5;
+    }
+    span {
+      width: 100%;
+      display: block;
+    }
+    #from-to {
+      text-align: center;
     }
   </style>
   <span id="from-to"></span>

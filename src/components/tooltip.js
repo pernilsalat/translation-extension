@@ -6,18 +6,18 @@ template.innerHTML = `
       min-height: 56px;
       position: absolute;
       border-radius: 8px;
-      background-color: rgba(0, 0, 0, .75);
+      background-color: rgba(0, 0, 0, .85);
       font-size: 16px;
       color: white;
       padding: 10px;
       z-index: 1000;
     }
   </style>
-    <div id="tooltip2"></div>`;
+  <div id="tooltip2"></div>`;
 
 export default class Tooltip extends HTMLElement {
   static get observedAttributes() {
-    return ['loading', 'position'];
+    return ['loading'];
   }
 
   constructor() {
@@ -54,10 +54,10 @@ export default class Tooltip extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'loading': {
-        if (this._loading.parentElement && newValue === null) {
+        if (newValue === null) {
           this.removeLoading();
           this.addPanel();
-        } else if (!this._loading.parentElement && newValue === '') {
+        } else if (newValue === '') {
           this.removePanel();
           this.addLoading();
         }

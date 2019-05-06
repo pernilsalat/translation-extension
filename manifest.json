@@ -21,9 +21,6 @@
       "js": [
         "src/content-scripts/content_script.js",
         "src/content-scripts/webcomponents-sd-ce.js"
-      ],
-      "css": [
-        "styles/style.css"
       ]
     }
   ],
@@ -32,8 +29,8 @@
     "storage"
   ],
   "web_accessible_resources": [
-    "src/scripts/*.js",
     "src/config/*.js",
+    "src/content-scripts/scripts/*.js",
     "src/popup/helpers/*.js",
     "src/components/*.js"
   ]
