@@ -1,6 +1,7 @@
 export const positionElement = element => {
-  let r = window.getSelection().getRangeAt(0).getBoundingClientRect();
-  let relative = document.body.parentNode.getBoundingClientRect();
-  element.style.top = (r.bottom - relative.top) + 10 + 'px';
-  element.style.right = -(r.right - relative.right) + 'px'; // this will align the right edges together
+  let relativePosition = window.getSelection().getRangeAt(0).getBoundingClientRect();
+  let absolutePosition = document.body.parentNode.getBoundingClientRect();
+
+  element.style.top = (relativePosition.bottom - absolutePosition.top) + 10 + 'px';
+  element.style.right = -(relativePosition.right - absolutePosition.right) + 'px'; // this will align the right edges together
 };
