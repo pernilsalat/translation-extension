@@ -3,10 +3,11 @@ template.innerHTML = `
   <style>
     #tooltip2 {
       display: none;
-      min-height: 56px;
       position: absolute;
-      border-radius: 8px;
+      min-height: 56px;
+      max-width: 50%;
       background-color: rgba(0, 0, 0, .85);
+      border-radius: 8px;
       font-size: 16px;
       color: white;
       padding: 10px;
