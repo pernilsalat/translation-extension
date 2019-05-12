@@ -45,5 +45,4 @@ export function main() {
   });
 
   document.addEventListener('selectionchange', () => selectionChanged = true);
-
 }
