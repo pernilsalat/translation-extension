@@ -17,32 +17,39 @@ document.body.appendChild(tooltip);
 let tooltipDiv = tooltip.shadowRoot.getElementById('tooltip2');
 
 export function main() {
-  window.addEventListener('mouseup', () => {
-    let selection = window.getSelection();
-    let text = selection.toString();
-
-    if (selectionChanged && text) {
-      chrome.storage.sync.get('active', ({ active }) => {
-        if (active) {
-          positionElement(tooltipDiv);
-          tooltipDiv.style.display = 'block';
-          tooltip.setAttribute('loading', '');
-
-          chrome.runtime.sendMessage({ type: TYPES.TRANSLATE, text }, ({ text, from, to }) => {
-            tooltip.text = text;
-            tooltip.fromTo = { from: languages[from], to: languages[to] };
-
-            tooltip.removeAttribute('loading');
-          });
-        }
-      });
-    }
-  });
-
   window.addEventListener('mousedown', () => {
     selectionChanged = false;
     tooltipDiv.style.display = 'none';
   });
 
   document.addEventListener('selectionchange', () => selectionChanged = true);
+
+  window.addEventListener('mouseup', mouseUpListener);
+
+  function mouseUpListener() {
+    let selection = window.getSelection();
+    let text = selection.toString();
+
+    if (selectionChanged && text) {
+      chrome.storage.sync.get('active', getActiveHandler);
+    }
+  }
+
+  function getActiveHandler({ active }) {
+    if (active) {
+      const text = window.getSelection().toString();
+      positionElement(tooltipDiv);
+      tooltipDiv.style.display = 'block';
+      tooltip.setAttribute('loading', '');
+
+      chrome.runtime.sendMessage({ type: TYPES.TRANSLATE, text }, responseHandler);
+    }
+  }
+
+  function responseHandler({ text, from, to }) {
+    tooltip.text = text;
+    tooltip.fromTo = { from: languages[from], to: languages[to] };
+
+    tooltip.removeAttribute('loading');
+  }
 }
