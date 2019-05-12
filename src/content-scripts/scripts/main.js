@@ -16,7 +16,7 @@ document.body.appendChild(tooltip);
 
 let tooltipDiv = tooltip.shadowRoot.getElementById('tooltip2');
 
-export function main() {
+export const main = () => {
   window.addEventListener('mousedown', () => {
     selectionChanged = false;
     tooltipDiv.style.display = 'none';
@@ -25,31 +25,31 @@ export function main() {
   document.addEventListener('selectionchange', () => selectionChanged = true);
 
   window.addEventListener('mouseup', mouseUpListener);
+};
 
-  function mouseUpListener() {
-    let selection = window.getSelection();
-    let text = selection.toString();
+function mouseUpListener() {
+  let selection = window.getSelection();
+  let text = selection.toString();
 
-    if (selectionChanged && text) {
-      chrome.storage.sync.get('active', getActiveHandler);
-    }
+  if (selectionChanged && text) {
+    chrome.storage.sync.get('active', getActiveHandler);
   }
+}
 
-  function getActiveHandler({ active }) {
-    if (active) {
-      const text = window.getSelection().toString();
-      positionElement(tooltipDiv);
-      tooltipDiv.style.display = 'block';
-      tooltip.setAttribute('loading', '');
+function getActiveHandler({ active }) {
+  if (active) {
+    const text = window.getSelection().toString();
+    positionElement(tooltipDiv);
+    tooltipDiv.style.display = 'block';
+    tooltip.setAttribute('loading', '');
 
-      chrome.runtime.sendMessage({ type: TYPES.TRANSLATE, text }, responseHandler);
-    }
+    chrome.runtime.sendMessage({ type: TYPES.TRANSLATE, text }, responseHandler);
   }
+}
 
-  function responseHandler({ text, from, to }) {
-    tooltip.text = text;
-    tooltip.fromTo = { from: languages[from], to: languages[to] };
+function responseHandler({ text, from, to }) {
+  tooltip.text = text;
+  tooltip.fromTo = { from: languages[from], to: languages[to] };
 
-    tooltip.removeAttribute('loading');
-  }
+  tooltip.removeAttribute('loading');
 }
