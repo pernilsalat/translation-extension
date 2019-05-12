@@ -18,12 +18,11 @@ function initialState(switchElement) {
 
 function addOnClickListener(switchElement) {
   switchElement.addEventListener('click', () => {
+    toggleClassName(switchElement, className);
     const active = switchElement.className.includes(className);
-    const path = `../../icons/icon_${active ? 'off' : 'on'}.png`;
+    const path = `../../icons/icon_${active ? 'on' : 'off'}.png`;
 
-    chrome.storage.sync.set({ active }, () => {
-      toggleClassName(switchElement, className);
-      chrome.browserAction.setIcon({ path });
-    });
+    chrome.storage.sync.set({ active });
+    chrome.browserAction.setIcon({ path });
   });
 }
