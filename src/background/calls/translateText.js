@@ -1,7 +1,7 @@
 import { ERROR_SERVICE } from '../../config/constants.js';
 
 export const translateText = async (text, language) => {
-  let url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl='
+  const url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl='
     + 'auto' + '&tl=' + language + '&dt=t&q=' + encodeURI(text);
 
   let translatedText, json = [];

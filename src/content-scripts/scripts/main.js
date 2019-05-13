@@ -28,8 +28,7 @@ export const main = () => {
 };
 
 function mouseUpListener() {
-  let selection = window.getSelection();
-  let text = selection.toString();
+  const text = window.getSelection().toString();
 
   if (selectionChanged && text) {
     chrome.storage.sync.get('active', getActiveHandler);

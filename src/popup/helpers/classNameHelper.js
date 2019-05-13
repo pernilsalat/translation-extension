@@ -1,6 +1,6 @@
 export const toggleClassName = (node, className) => {
   let classes = node.className.split(' ');
-  let existingIndex = classes.indexOf(className);
+  const existingIndex = classes.indexOf(className);
 
   if (existingIndex >= 0)
     classes.splice(existingIndex, 1);

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "sample",
-  "description": "A extension to translate the selected text",
+  "description": "A extension tocallback hell in main script translate the selected text",
   "version": "1.0",
   "browser_action": {
     "default_title": "translation extension",

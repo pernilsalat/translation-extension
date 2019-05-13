@@ -4,7 +4,7 @@ import { getDefaultLanguage } from './helpers/defaultLanguage.js';
 
 chrome.runtime.onInstalled.addListener(({ reason }) => {
   if (reason === 'install') {
-    let defaultLanguage = getDefaultLanguage();
+    const defaultLanguage = getDefaultLanguage();
     chrome.storage.sync.set({
       active: true,
       languageSelected: defaultLanguage

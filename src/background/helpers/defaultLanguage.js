@@ -5,10 +5,8 @@ export const getDefaultLanguage = () => {
     code: 'es',
     name: 'English',
   };
-  let code = navigator.language;
-  if (!code.startsWith('zh')) {
-    code = code.split('-')[0];
-  }
+  const code = navigator.language;
+
   if (languages[code]) {
     defaultLanguage.code = code;
     defaultLanguage.name = languages[code];
